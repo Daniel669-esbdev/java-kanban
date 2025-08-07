@@ -19,4 +19,9 @@ public class Epic extends Save {
     public void clearSubtaskIds() {
         subtaskIds.clear();
     }
+    @Override
+    public String toString() {
+        return "Epic{id=" + getId() + ", title='" + getTitle() + "', description='" + getDescription() + "', status=" + getStatus()
+                + ", subtasks=" + subtaskIds + "}";
+    }
 }
