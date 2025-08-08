@@ -1,13 +1,15 @@
-public class Save {
-    private  String title;
-    private  String description;
-    private  int id;
-    private  TaskPriority status;
+import java.util.ArrayList;
+import java.util.List;
 
-    public Save(String title, String description, int id, TaskPriority status) {
+public class Save {
+    protected String title;
+    protected String description;
+    protected int id;
+    protected TaskPriority status;
+
+    public Save(String title, String description, TaskPriority status) {
         this.title = title;
         this.description = description;
-        this.id = id++;
         this.status = status;
     }
 
@@ -26,7 +28,6 @@ public class Save {
     public void setDescription(String description) {
         this.description = description;
     }
-
     public int getId() {
         return id;
     }
@@ -46,7 +47,7 @@ public class Save {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Save)) return false;
         Save save = (Save) o;
         return id == save.id;
     }
@@ -55,6 +56,7 @@ public class Save {
     public int hashCode() {
         return Integer.hashCode(id);
     }
+
     @Override
     public String toString() {
         return "Task{id=" + id + ", title='" + title + "', description='" + description + "', status=" + status + "}";

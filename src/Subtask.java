@@ -1,8 +1,8 @@
 public class Subtask extends Save {
     private int epicId;
 
-    public Subtask(String title, String description, int id, TaskPriority status, int epicId) {
-        super(title, description, id, status);
+    public Subtask(String title, String description, TaskPriority status, int epicId) {
+        super(title, description, status);
         this.epicId = epicId;
     }
 
@@ -10,12 +10,9 @@ public class Subtask extends Save {
         return epicId;
     }
 
-    public void setEpicId(int epicId) {
-        this.epicId = epicId;
-    }
     @Override
     public String toString() {
-        return "Subtask{id=" + getId() + ", title='" + getTitle() + "', description='" + getDescription() + "', status=" + getStatus()
-                + ", epicId=" + epicId + "}";
+        return "Subtask{id=" + getId() + ", title='" + getTitle() + "', description='" + getDescription() +
+                "', status=" + getStatus() + ", epicId=" + epicId + "}";
     }
 }
