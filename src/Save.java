@@ -42,7 +42,7 @@ public class Save {
     }
 
     @Override
-    public boolean equals(Object o) {
+        public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Save)) return false;
         Save save = (Save) o;
@@ -50,12 +50,12 @@ public class Save {
     }
 
     @Override
-    public int hashCode() {
+        public int hashCode() {
         return Integer.hashCode(id);
     }
 
     @Override
-    public String toString() {
+        public String toString() {
         return "Task{id=" + id + ", title='" + title + "', description='" + description + "', status=" + status + "}";
     }
 }
