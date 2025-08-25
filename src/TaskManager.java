@@ -1,204 +1,31 @@
-    import java.util.*;
+import java.util.List;
 
-    public class TaskManager {
-        private int nextId = 1;
+public interface TaskManager {
+    Save createTask(Save task);
+    Epic createEpic(Epic epic);
+    Subtask createSubtask(Subtask subtask);
 
-        private final Map<Integer, Save> tasks = new HashMap<>();
-        private final Map<Integer, Epic> epics = new HashMap<>();
-        private final Map<Integer, Subtask> subtasks = new HashMap<>();
+    void updateTask(Save task);
+    void updateEpic(Epic epic);
+    void updateSubtask(Subtask subtask);
 
-        public Save createTask(Save task) {
-            task.setId(nextId++);
-            tasks.put(task.getId(), task);
-            return task;
-        }
+    void clearAllTasks();
+    void clearAllEpics();
+    void clearAllSubtasks();
 
-        public Epic createEpic(Epic epic) {
-            epic.setId(nextId++);
-            epics.put(epic.getId(), epic);
-            return epic;
-        }
+    void removeTaskById(int id);
+    void removeEpicById(int id);
+    void removeSubtaskById(int id);
 
-        public Subtask createSubtask(Subtask subtask) {
-            Epic epic = epics.get(subtask.getEpicId());
-            if (epic == null) return null;
+    List<Subtask> getSubtasksOfEpic(int epicId);
 
-            subtask.setId(nextId++);
-            subtasks.put(subtask.getId(), subtask);
-            epic.addSubtaskId(subtask.getId());
-            updateEpicStatus(epic.getId());
-            return subtask;
-        }
+    Save getTaskById(int id);
+    Epic getEpicById(int id);
+    Subtask getSubtaskById(int id);
 
-        public void updateTask(Save task) {
-            Save existing = tasks.get(task.getId());
-            if (existing != null) {
-                existing.setTitle(task.getTitle());
-                existing.setDescription(task.getDescription());
-                existing.setStatus(task.getStatus());
-            }
-        }
+    List<Save> getTasks();
+    List<Epic> getEpics();
+    List<Subtask> getSubtasks();
 
-        public void updateEpic(Epic epic) {
-            Epic existing = epics.get(epic.getId());
-            if (existing != null) {
-                existing.setTitle(epic.getTitle());
-                existing.setDescription(epic.getDescription());
-            }
-        }
-
-        public void updateSubtask(Subtask subtaskMiniNew) {
-            Subtask subtaskMini = subtasks.get(subtaskMiniNew.getId());
-            if (subtaskMini != null) {
-                if (subtaskMini.getEpicId() == subtaskMiniNew.getEpicId()) {
-                    subtaskMini.setTitle(subtaskMiniNew.getTitle());
-                    subtaskMini.setDescription(subtaskMiniNew.getDescription());
-                    subtaskMini.setStatus(subtaskMiniNew.getStatus());
-                    updateEpicStatus(subtaskMini.getEpicId());
-                } else {
-                    System.out.println("Ошибка,нельзя изменить айди");
-                }
-            }
-        }
-
-        private void updateEpicStatus(int epicId) {
-            Epic epic = epics.get(epicId);
-            if (epic == null) return;
-
-            List<Integer> subtaskIds = epic.getSubtaskIds();
-            if (subtaskIds.isEmpty()) {
-                epic.setStatus(TaskPriority.NEW);
-                return;
-            }
-
-            boolean allNew = true;
-            boolean allDone = true;
-
-            for (int id : subtaskIds) {
-                Subtask s = subtasks.get(id);
-                if (s == null) {
-
-                    allNew = false;
-                    allDone = false; // сделал как вы и просили, так же решил поменять и первое название
-                    continue;
-                }
-                TaskPriority status = s.getStatus();
-                if (status != TaskPriority.NEW) {
-                    allNew = false;
-                }
-                if (status != TaskPriority.DONE) {
-                    allDone = false;
-                }
-            }
-
-            if (allDone) {
-                epic.setStatus(TaskPriority.DONE);
-            } else if (allNew) {
-                epic.setStatus(TaskPriority.NEW);
-            } else {
-                epic.setStatus(TaskPriority.IN_PROGRESS);
-            }
-        }
-
-        public void clearAllTasks() {
-            tasks.clear();
-        }
-
-        public void clearAllEpics() {
-            epics.clear();
-            subtasks.clear();
-        }
-
-        public void clearAllSubtasks() {
-            subtasks.clear();
-            for (Epic e : epics.values()) {
-                e.clearSubtaskIds();
-                updateEpicStatus(e.getId());
-            }
-        }
-
-        public void removeTaskById(int id) {
-            tasks.remove(id);
-        }
-
-        public void removeEpicById(int id) {
-            Epic removed = epics.remove(id);
-            if (removed != null) {
-                for (int subId : removed.getSubtaskIds()) {
-                    subtasks.remove(subId);
-                }
-            }
-        }
-
-        public void removeSubtaskById(int id) {
-            Subtask removed = subtasks.remove(id);
-            if (removed != null) {
-                Epic parent = epics.get(removed.getEpicId());
-                if (parent != null) {
-                    parent.removeSubtaskId(id);
-                    updateEpicStatus(parent.getId());
-                }
-            }
-        }
-
-        public List<Subtask> getSubtasksOfEpic(int epicId) {
-            Epic epic = epics.get(epicId);
-            if (epic == null) {
-                return Collections.emptyList();
-            }
-            List<Subtask> result = new ArrayList<>();
-            for (int subId : epic.getSubtaskIds()) {
-                Subtask s = subtasks.get(subId);
-                if (s != null) {
-                    result.add(s);
-                }
-            }
-            return result;
-        }
-
-        // Давай на ты, твое имя я помнил, просто хотел уточнить как могу к тебе обращаться
-        // И у меня вопрос, иногда можно использовать структуру кода которую мы еще не проходили
-        // расскажу немного о себе, сразу с начала курса я устроился работать в микросервисы, иногда приходится заходит дальше по работе
-        // ты будешь до конца курса у меня ревью кода делать?
-
-
-        public TaskRead getReader() {
-            return new TaskRead(tasks, epics, subtasks);
-        }
-
-        public static class TaskRead {
-            private final Map<Integer, Save> tasks;
-            private final Map<Integer, Epic> epics;
-            private final Map<Integer, Subtask> subtasks;
-
-            public TaskRead(Map<Integer, Save> tasks, Map<Integer, Epic> epics, Map<Integer, Subtask> subtasks) {
-                this.tasks = tasks;
-                this.epics = epics;
-                this.subtasks = subtasks;
-            }
-
-            public Save getTask(int id) {
-                return tasks.get(id);
-            }
-
-            public Epic getEpic(int id) {
-                return epics.get(id);
-            }
-
-            public Subtask getSubtask(int id) {
-                return subtasks.get(id);
-            }
-
-            public List<Save> getAllTasks() {
-                return new ArrayList<>(tasks.values());
-            }
-
-            public List<Epic> getAllEpics() {
-                return new ArrayList<>(epics.values());
-            }
-
-            public List<Subtask> getAllSubtasks() {
-                return new ArrayList<>(subtasks.values());
-            }
-        }
-    }
+    List<Save> getHistory();
+}

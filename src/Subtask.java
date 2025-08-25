@@ -1,6 +1,11 @@
 public class Subtask extends Save {
     private int epicId;
 
+    public Subtask(String title, String description, int epicId) {
+        super(title, description, TaskPriority.NEW);
+        this.epicId = epicId;
+    }
+
     public Subtask(String title, String description, TaskPriority status, int epicId) {
         super(title, description, status);
         this.epicId = epicId;
