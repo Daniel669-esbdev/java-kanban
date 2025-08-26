@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Objects;
+
 public class Save {
     protected String title;
     protected String description;
@@ -25,6 +29,7 @@ public class Save {
     public void setDescription(String description) {
         this.description = description;
     }
+
     public int getId() {
         return id;
     }
@@ -43,19 +48,24 @@ public class Save {
 
     @Override
         public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Save)) return false;
-        Save save = (Save) o;
-        return id == save.id;
+            if (this == o) return true;
+            if (!(o instanceof Save)) return false;
+            Save save = (Save) o;
+            return id == save.id;
     }
 
     @Override
         public int hashCode() {
-        return Integer.hashCode(id);
+            return Objects.hash(id);
     }
 
     @Override
         public String toString() {
-        return "Task{id=" + id + ", title='" + title + "', description='" + description + "', status=" + status + "}";
+            return getClass().getSimpleName() + "{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
     }
 }

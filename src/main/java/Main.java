@@ -1,3 +1,7 @@
+
+import model.*;
+import manager.*;
+
 public class Main {
     public static void main(String[] args) {
         TaskManager manager = Managers.getDefault();
@@ -34,7 +38,7 @@ public class Main {
                 System.out.println(epic);
 
                 for (Subtask subtask : manager.getSubtasksOfEpic(epic.getId())) {
-                    System.out.println("--> " + subtask);
+                    System.out.println("> " + subtask);
                 }
             }
 

@@ -1,3 +1,5 @@
+package model;
+
 public class Subtask extends Save {
     private int epicId;
 
@@ -16,8 +18,8 @@ public class Subtask extends Save {
     }
 
     @Override
-    public String toString() {
-        return "Subtask{id=" + getId() + ", title='" + getTitle() + "', description='" + getDescription() +
+        public String toString() {
+            return "Subtask{id=" + getId() + ", title='" + getTitle() + "', description='" + getDescription() +
                 "', status=" + getStatus() + ", epicId=" + epicId + "}";
     }
 }

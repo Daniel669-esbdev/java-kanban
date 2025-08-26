@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +27,8 @@ public class Epic extends Save {
     }
 
     @Override
-    public String toString() {
-        return "Epic{id=" + getId() +
+        public String toString() {
+            return "Epic{id=" + getId() +
                 ", title='" + getTitle() + "'" +
                 ", description='" + getDescription() + "'" +
                 ", status=" + getStatus() +
