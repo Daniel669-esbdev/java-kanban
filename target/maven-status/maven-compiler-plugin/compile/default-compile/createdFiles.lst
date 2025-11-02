@@ -1,0 +1,10 @@
+manager\InMemoryHistoryManager.class
+manager\Managers.class
+model\Subtask.class
+com\example\Main.class
+manager\TaskManager.class
+manager\InMemoryTaskManager.class
+manager\HistoryManager.class
+model\Epic.class
+model\TaskPriority.class
+model\Save.class

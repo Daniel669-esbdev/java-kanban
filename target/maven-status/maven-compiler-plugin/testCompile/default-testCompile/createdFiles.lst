@@ -1,0 +1,5 @@
+model\SubtaskTest.class
+model\EpicTest.class
+manager\InMemoryTaskManagerTest.class
+manager\ManagersTest.class
+model\SaveTest.class

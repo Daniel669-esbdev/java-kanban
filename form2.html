@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Лабораторная работа №3/2</title>
+</head>
+<body style="font-family: Arial; background-color: #a4a7a8; margin: 40px;">
+
+  <h2>Анкета пользователя</h2>
+
+  <form action="#" method="post">
+
+    <label>Фамилия: <input type="text" name="fam" value="Даниэль"></label><br><br>
+    <label>Имя: <input type="text" name="name" value="Джамбулатов"></label><br><br>
+    <label>Отчество: <input type="text" name="otch" value="Дамирович"></label><br><br>
+    <label>E-mail: <input type="email" name="email" value="daniel@gmail.com"></label><br><br>
+
+    <label>Страна:
+      <select name="country">
+        <option selected>Казахстан</option>
+        <option>Казахский</option>
+        <option>Греция</option>
+        <option>Англия</option>
+        <option>Канада</option>
+        <option>Тайланд</option>
+        <option>Китай</option>
+        <option>Япония</option>
+        <option>Сингапур</option>
+        <option>США</option>
+      </select>
+    </label><br><br>
+
+    <p>Выберите город:</p>
+    <label><input type="radio" name="city" value="astana" checked> Астана</label><br>
+    <label><input type="radio" name="city" value="almaty"> Алматы</label><br>
+    <label><input type="radio" name="city" value="karaganda"> Караганда</label><br>
+    <label><input type="radio" name="city" value="aktobe"> Актобе</label><br>
+    <label><input type="radio" name="city" value="shymkent"> Шымкент</label><br><br>
+
+    <p>Выберите языки:</p>
+    <label><input type="checkbox" name="lang1" value="russian" checked> Русский</label><br>
+    <label><input type="checkbox" name="lang2" value="kazakh"> Казахский</label><br>
+    <label><input type="checkbox" name="lang3" value="english"> Английский</label><br>
+    <label><input type="checkbox" name="lang4" value="chinese"> Китайский</label><br>
+    <label><input type="checkbox" name="lang5" value="german"> Немецкий</label><br><br>
+
+    <label>Профессия:
+      <select name="prof" multiple size="6">
+        <option>Программист</option>
+        <option>Инженер</option>
+        <option>Учитель</option>
+        <option>Менеджер</option>
+        <option>Маркетолог</option>
+        <option>Дизайнер</option>
+        <option>Врач</option>
+        <option>Юрист</option>
+        <option>Экономист</option>
+        <option>Журналист</option>
+      </select>
+    </label><br><br>
+
+    <label>Пароль: <input type="password" name="password" value="12345"></label><br><br>
+
+    <label>Дополнительная информация:</label><br>
+    <textarea name="info" rows="5" cols="50">Интересуюсь программированием и IT-проектами.</textarea><br><br>
+
+    <input type="submit" value="Отправить данные">
+    <input type="reset" value="Очистить форму">
+
+  </form>
+</body>
+</html>

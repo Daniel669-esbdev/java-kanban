@@ -1,0 +1,20 @@
+oracle-db:
+  image: gvenzl/oracle-xe:21-full  # 21c XE, full версия с APEX; альтернатива: 21-slim (минимальная)
+  container_name: oracle-db
+  ports:
+    - "1521:1521"  # Порт для JDBC
+    - "8080:8080"  # Порт для APEX (веб-интерфейс)
+  environment:
+    - ORACLE_PASSWORD=admin123  # Пароль для SYS/SYSTEM (замени на свой, минимум 8 символов)
+    - APP_USER=appuser  # Опционально: пользователь для приложения
+    - APP_USER_PASSWORD=apppass  # Пароль для APP_USER
+  volumes:
+    - oracle-data:/opt/oracle/oradata  # Для сохранения данных (опционально)
+  healthcheck:
+    test: ["CMD-SHELL", "healthcheck.sh -f"]
+    interval: 30s
+    timeout: 10s
+    retries: 5
+
+volumes:
+  oracle-data:  # Объём для данных Oracle

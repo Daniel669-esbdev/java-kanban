@@ -36,7 +36,7 @@ public class InMemoryTaskManagerTest {
     @Test
         void shouldKeepTaskImmutableAfterAdd() {
             InMemoryTaskManager manager = new InMemoryTaskManager();
-            Save task = new Save("Исходна", "Описание", TaskPriority.NEW);
+            Save task = new Save("Исходная", "Описание", TaskPriority.NEW);
             int taskId = manager.createTask(task).getId();
 
             Save fromManager = manager.getTaskById(taskId);

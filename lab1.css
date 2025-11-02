@@ -1,0 +1,50 @@
+body {
+    background-color: #e3e3e3;
+    margin: 30px; 
+  }
+  
+  .part1-title {
+    font-family: 'Cambria Math';
+    font-size: 16px;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .part1-text {
+    font-family: 'Cambria Math';
+    font-size: 16px;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .part2-text {
+    font-family: 'Times New Roman';
+    font-size: 17px;
+    color: green;
+    text-align: justify;
+  }
+  
+  .part2-img {
+    float: left;
+    margin-right: 10px;
+    width: 25px;
+    height: 50px;
+  }
+  
+  .part3-title {
+    font-family: 'Tahoma';
+    font-size: 24px;
+    color: black;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  .part2-list {
+    font-family: 'Times New Roman';
+    font-size: 17px;
+    color: green;
+    text-align: justify;
+  }
+  
