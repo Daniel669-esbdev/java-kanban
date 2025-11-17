@@ -1,9 +1,13 @@
-    package manager;
-    import model.*;
+package manager;
 
-    import java.util.List;
+import model.Save;
+import java.util.List;
 
-    public interface HistoryManager {
-        void add(Save task);
-        List<Save> getHistory();
-    }
+public interface HistoryManager {
+
+    void add(Save task);
+
+    void remove(int id);
+
+    List<Save> getHistory();
+}

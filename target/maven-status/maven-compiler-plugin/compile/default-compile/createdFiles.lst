@@ -1,10 +1,13 @@
 manager\InMemoryHistoryManager.class
 manager\Managers.class
-model\Subtask.class
 com\example\Main.class
+manager\ManagerSaveException.class
+manager\FileBackedTaskManager.class
+manager\InMemoryHistoryManager$Node.class
+model\TaskPriority.class
+model\Save.class
+model\Subtask.class
 manager\TaskManager.class
 manager\InMemoryTaskManager.class
 manager\HistoryManager.class
 model\Epic.class
-model\TaskPriority.class
-model\Save.class

@@ -1,6 +1,6 @@
 package manager;
 
-import model.*;
+import java.nio.file.Path;
 
 public final class Managers {
 
@@ -8,7 +8,7 @@ public final class Managers {
     }
 
     public static TaskManager getDefault() {
-        return new InMemoryTaskManager();
+        return FileBackedTaskManager.loadFromFile(Path.of("tasks.csv"));
     }
 
     public static HistoryManager getDefaultHistory() {
